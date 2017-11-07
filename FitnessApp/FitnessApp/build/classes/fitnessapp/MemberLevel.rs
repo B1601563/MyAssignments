@@ -1,0 +1,1 @@
+fitnessApp.MemberLevel
