@@ -23,15 +23,23 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="2" attributes="0">
-                  <Component id="editProfileBtn" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="viewTrainingBtn" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="viewAllSessionsBtn" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="logOutBtn" alignment="2" min="-2" pref="129" max="-2" attributes="0"/>
-                  <Component id="welcomeMsgLbl" alignment="2" min="-2" pref="307" max="-2" attributes="0"/>
-                  <Component id="jLabel2" alignment="2" min="-2" pref="307" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="2" attributes="0">
+                          <Component id="editProfileBtn" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="viewTrainingBtn" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="recordNewSessionBtn" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="logOutBtn" alignment="2" min="-2" pref="129" max="-2" attributes="0"/>
+                          <Component id="welcomeMsgLbl" alignment="2" min="-2" pref="307" max="-2" attributes="0"/>
+                          <Component id="jLabel2" alignment="2" min="-2" pref="307" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="209" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace pref="153" max="32767" attributes="0"/>
           </Group>
@@ -46,8 +54,10 @@
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="editProfileBtn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-              <Component id="viewAllSessionsBtn" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="recordNewSessionBtn" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="viewTrainingBtn" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
@@ -89,12 +99,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewTrainingBtnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="viewAllSessionsBtn">
+    <Component class="javax.swing.JButton" name="recordNewSessionBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="View All Available Sessions"/>
+        <Property name="text" type="java.lang.String" value="Record New Training Session"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewAllSessionsBtnActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="recordNewSessionBtnActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="logOutBtn">
@@ -104,6 +114,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logOutBtnActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="https://icons8.com/icon/set/trainer/all"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 public class TrainerMenuFrame extends javax.swing.JFrame {
     private HELPFit helpfit;
     private HFGUI hfgui;
-    private Member theMember;
+    private Trainer theTrainer;
     /**
      * Creates new form TrainerMenuFrame
      */
@@ -21,7 +21,7 @@ public class TrainerMenuFrame extends javax.swing.JFrame {
         initComponents();
         setTitle("Trainer Menu");
         setSize(600, 400);
-        setLocation(850, 450);
+        setLocation(200, 150);
         
         // make HFGUI the parent of this Frame
         hfgui = theParent;
@@ -31,9 +31,10 @@ public class TrainerMenuFrame extends javax.swing.JFrame {
         // make HFGUI not visible
         hfgui.setVisible(false);
         
-        this.theMember = theMember;
-        // Display personalized welcome message for member
-        welcomeMsgLbl.setText("Welcome, " + theMember.getFullName());
+        this.theTrainer = theTrainer;
+        
+        // Display personalized welcome message for trainer
+        welcomeMsgLbl.setText("Welcome, " + theTrainer.getFullName());
         
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     }
@@ -51,8 +52,9 @@ public class TrainerMenuFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         editProfileBtn = new javax.swing.JButton();
         viewTrainingBtn = new javax.swing.JButton();
-        viewAllSessionsBtn = new javax.swing.JButton();
+        recordNewSessionBtn = new javax.swing.JButton();
         logOutBtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,10 +79,10 @@ public class TrainerMenuFrame extends javax.swing.JFrame {
             }
         });
 
-        viewAllSessionsBtn.setText("View All Available Sessions");
-        viewAllSessionsBtn.addActionListener(new java.awt.event.ActionListener() {
+        recordNewSessionBtn.setText("Record New Training Session");
+        recordNewSessionBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewAllSessionsBtnActionPerformed(evt);
+                recordNewSessionBtnActionPerformed(evt);
             }
         });
 
@@ -91,19 +93,26 @@ public class TrainerMenuFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("https://icons8.com/icon/set/trainer/all");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(140, 140, 140)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(editProfileBtn)
-                    .addComponent(viewTrainingBtn)
-                    .addComponent(viewAllSessionsBtn)
-                    .addComponent(logOutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(welcomeMsgLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(140, 140, 140)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(editProfileBtn)
+                            .addComponent(viewTrainingBtn)
+                            .addComponent(recordNewSessionBtn)
+                            .addComponent(logOutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(welcomeMsgLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(209, 209, 209)
+                        .addComponent(jLabel1)))
                 .addContainerGap(153, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -115,8 +124,10 @@ public class TrainerMenuFrame extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(editProfileBtn)
-                .addGap(34, 34, 34)
-                .addComponent(viewAllSessionsBtn)
+                .addGap(14, 14, 14)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(recordNewSessionBtn)
                 .addGap(18, 18, 18)
                 .addComponent(viewTrainingBtn)
                 .addGap(50, 50, 50)
@@ -128,19 +139,19 @@ public class TrainerMenuFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void editProfileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editProfileBtnActionPerformed
-        EditMemberProfileDialog empDialog = new EditMemberProfileDialog(hfgui, true, theMember);
-        empDialog.setVisible(true);
+        EditTrainerProfileDialog etpDialog = new EditTrainerProfileDialog(hfgui, true, theTrainer);
+        etpDialog.setVisible(true);
     }//GEN-LAST:event_editProfileBtnActionPerformed
 
     private void viewTrainingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewTrainingBtnActionPerformed
-        MemberTrainingHistoryDialog mthDialog = new MemberTrainingHistoryDialog(hfgui, true, theMember);
-        mthDialog.setVisible(true);
+        TrainerTrainingHistoryDialog tthDialog = new TrainerTrainingHistoryDialog(hfgui, true, theTrainer);
+        tthDialog.setVisible(true);
     }//GEN-LAST:event_viewTrainingBtnActionPerformed
 
-    private void viewAllSessionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewAllSessionsBtnActionPerformed
-        UpcomingSessionsWindow usWindow = new UpcomingSessionsWindow(hfgui, true, theMember);
-        usWindow.setVisible(true);
-    }//GEN-LAST:event_viewAllSessionsBtnActionPerformed
+    private void recordNewSessionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recordNewSessionBtnActionPerformed
+        RecordNewSessionDialog rnsDialog = new RecordNewSessionDialog(hfgui, true, theTrainer);
+        rnsDialog.setVisible(true);
+    }//GEN-LAST:event_recordNewSessionBtnActionPerformed
 
     private void logOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutBtnActionPerformed
         this.dispose();
@@ -186,9 +197,10 @@ public class TrainerMenuFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton editProfileBtn;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton logOutBtn;
-    private javax.swing.JButton viewAllSessionsBtn;
+    private javax.swing.JButton recordNewSessionBtn;
     private javax.swing.JButton viewTrainingBtn;
     private javax.swing.JLabel welcomeMsgLbl;
     // End of variables declaration//GEN-END:variables

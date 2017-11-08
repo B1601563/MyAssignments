@@ -6,26 +6,26 @@ import javax.swing.*;
  *
  * @author celine_yin
  */
-public class EditMemberProfileDialog extends javax.swing.JDialog {
+public class EditTrainerProfileDialog extends javax.swing.JDialog {
     private HELPFit helpfit;
-    private Member theMember;
+    private Trainer theTrainer;
     /**
-     * Creates new form EditMemberProfileDialog
+     * Creates new form EditTrainerProfileDialog
      */
-    public EditMemberProfileDialog(java.awt.Frame parent, boolean modal, Member theMember) {
+    public EditTrainerProfileDialog(java.awt.Frame parent, boolean modal, Trainer theTrainer) {
         super(parent, modal);
         initComponents();
-        setTitle("Edit Member Profile");
+        setTitle("Edit Trainer Profile");
         setSize(450, 400);
-        setLocation(900, 500);
+        setLocation(250, 150);
         helpfit = ((HFGUI) parent).getHELPFit();
-        this.theMember = theMember;
+        this.theTrainer = theTrainer;
         
-        usernameLbl.setText(theMember.getUsername());
-        pwdTF.setText(theMember.getPassword());
-        fNameTF.setText(theMember.getFullName());
-        emailTF.setText(theMember.getEmail());
-        levelCB.setSelectedItem(theMember.getLevel());
+        usernameLbl.setText(theTrainer.getUsername());
+        pwdTF.setText(theTrainer.getPassword());
+        fNameTF.setText(theTrainer.getFullName());
+        emailTF.setText(theTrainer.getEmail());
+        specialtyTF.setText(theTrainer.getSpecialty());
     }
 
     /**
@@ -46,16 +46,16 @@ public class EditMemberProfileDialog extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         fNameTF = new javax.swing.JTextField();
         emailTF = new javax.swing.JTextField();
-        levelCB = new javax.swing.JComboBox<>();
         updateBtn = new javax.swing.JButton();
         usernameLbl = new javax.swing.JLabel();
         cancelBtn = new javax.swing.JButton();
+        specialtyTF = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Member Profile");
+        jLabel1.setText("Trainer Profile");
 
         jLabel2.setText("Password:");
 
@@ -65,9 +65,7 @@ public class EditMemberProfileDialog extends javax.swing.JDialog {
 
         jLabel5.setText("Email:");
 
-        jLabel6.setText("Level:");
-
-        levelCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Beginner", "Advanced", "Expert" }));
+        jLabel6.setText("Specialty:");
 
         updateBtn.setText("Update");
         updateBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -106,13 +104,13 @@ public class EditMemberProfileDialog extends javax.swing.JDialog {
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(levelCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(emailTF, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pwdTF, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(8, 8, 8)
-                        .addComponent(usernameLbl)))
+                        .addComponent(usernameLbl))
+                    .addComponent(specialtyTF, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -137,9 +135,9 @@ public class EditMemberProfileDialog extends javax.swing.JDialog {
                     .addComponent(jLabel5)
                     .addComponent(emailTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(levelCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(specialtyTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(updateBtn)
@@ -155,18 +153,18 @@ public class EditMemberProfileDialog extends javax.swing.JDialog {
         String password = pwdTF.getText();
         String fullName = fNameTF.getText();
         String email = emailTF.getText();
-        MemberLevel level = MemberLevel.values()[levelCB.getSelectedIndex()];
+        String specialty = specialtyTF.getText();
 
         if (password.equals("") || fullName.equals("")
                 || email.equals("")) {
             JOptionPane.showMessageDialog(this, "You must not leave any fields empty.",
                     "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            theMember.setPassword(password);
-            theMember.setFullName(fullName);
-            theMember.setEmail(email);
-            theMember.setLevel(level);
-            JOptionPane.showMessageDialog(this, "Member details updated successfully!\n" + theMember.toString(), 
+            theTrainer.setPassword(password);
+            theTrainer.setFullName(fullName);
+            theTrainer.setEmail(email);
+            theTrainer.setSpecialty(specialty);
+            JOptionPane.showMessageDialog(this, "Trainer details updated successfully!\n" + theTrainer.toString(), 
                     "Success!", JOptionPane.INFORMATION_MESSAGE);
             this.setVisible(false);
         }
@@ -194,14 +192,22 @@ public class EditMemberProfileDialog extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditMemberProfileDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditTrainerProfileDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditMemberProfileDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditTrainerProfileDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditMemberProfileDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditTrainerProfileDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditMemberProfileDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditTrainerProfileDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -214,7 +220,7 @@ public class EditMemberProfileDialog extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                EditMemberProfileDialog dialog = new EditMemberProfileDialog(new javax.swing.JFrame(), true, null);
+                EditTrainerProfileDialog dialog = new EditTrainerProfileDialog(new javax.swing.JFrame(), true, null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -236,8 +242,8 @@ public class EditMemberProfileDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JComboBox<String> levelCB;
     private javax.swing.JTextField pwdTF;
+    private javax.swing.JTextField specialtyTF;
     private javax.swing.JButton updateBtn;
     private javax.swing.JLabel usernameLbl;
     // End of variables declaration//GEN-END:variables
